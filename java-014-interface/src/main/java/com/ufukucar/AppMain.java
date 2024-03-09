@@ -23,6 +23,7 @@ public class AppMain {
         System.out.println("Marka: " + ucak.getMarka());
 
 
+
     }
 
 
