@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.ufukucar</groupId>
-    <artifactId>java-011-inheritance-miras-kalitim</artifactId>
+    <artifactId>java-012-polymorphism-cok-bicimlilik</artifactId>
     <version>1.0.0</version>
 
     <properties>
