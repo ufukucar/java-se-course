@@ -16,5 +16,11 @@ public class Kus extends Hayvan {
         System.out.println("Kus: Cik Cik");
     }
 
+    public void yemekYe() {
+        System.out.println("Kuş: Yem ye");
+    }
+
+
+
 }
 

@@ -36,8 +36,27 @@ public class Main {
         Hayvan hayvan = new Hayvan();
         //hayvan.sesVer();
 
-        System.out.println("------------------------------");
+        System.out.println("================================");
 
+        Hayvan hayvanObj;
+
+        hayvanObj = new Kedi();
+        System.out.println("------------------------------" + hayvanObj);
+        hayvanObj = new Kopek();
+        System.out.println("------------------------------" + hayvanObj);
+        hayvanObj = new Kus();
+        System.out.println("------------------------------" + hayvanObj);
+
+
+        if ( hayvanObj instanceof Hayvan ) {
+            System.out.println(hayvanObj);
+        }
+
+        System.out.println("------------------------------" + hayvanObj);
+
+        ((Kus) hayvanObj).yemekYe();
+
+        System.out.println("------------------------------" + hayvanObj);
 
     }
 
