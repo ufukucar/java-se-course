@@ -30,11 +30,17 @@ public class Customer {
     @Column(name = "LAST_NAME", length = 55)
     private String lastName;
 
+    @Column(name = "AGE" )
+    private Integer age;
 
     public Customer(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
-
+    public Customer(String firstName, String lastName, Integer age) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+    }
 }
