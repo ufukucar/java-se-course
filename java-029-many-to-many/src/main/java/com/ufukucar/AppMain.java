@@ -72,6 +72,7 @@ public class AppMain {
 
         Session session = HibernateUtil.getSessionFactory().openSession();
 
+
         Transaction transaction = null;
 
         try {
