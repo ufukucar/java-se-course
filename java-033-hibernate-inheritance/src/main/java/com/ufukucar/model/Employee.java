@@ -4,8 +4,17 @@ import java.util.Date;
 
 public class Employee extends Person {
 
+    private Long employeeId;
     private Date joiningDate;
     private String departmentName;
+
+    public Long getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(Long employeeId) {
+        this.employeeId = employeeId;
+    }
 
     public Employee() {
         super();

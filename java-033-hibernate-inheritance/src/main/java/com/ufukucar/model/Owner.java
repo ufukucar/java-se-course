@@ -2,10 +2,19 @@ package com.ufukucar.model;
 
 public class Owner extends Person {
 
+    private Long ownerId;
     private Long stocks;
     private Long partnershipStake;
 
     public Owner() {
+    }
+
+    public Long getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(Long ownerId) {
+        this.ownerId = ownerId;
     }
 
     public Owner(Long stocks, Long partnershipStake) {
