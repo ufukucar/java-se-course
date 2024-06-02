@@ -19,6 +19,7 @@ CREATE SCHEMA real_estate_db AUTHORIZATION postgres;
 - description
 - type
 
+--- Bir gayrimenkulu birden fazla kişi alabilir.
 ### Buyer - Alıcı 
 - id
 - firstName
