@@ -2,6 +2,7 @@ package com.ufukucar.model;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.*;
 
 @Data // @Getter @Setter
@@ -22,6 +23,8 @@ public class Student {
 
     private String lastName;
 
+    @Email
+    @Column(unique=true)
     private String email;
 
 

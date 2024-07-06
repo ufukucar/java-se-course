@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 // http://localhost:8090/api/v1
 
@@ -41,13 +42,10 @@ public class StudentController {
 
     // GET - SELECT ALL
     // http://localhost:8090/api/v1/students ya da http://localhost:8090/api/v1/student/all
-    @GetMapping({"/students", "student/all"})
+    @GetMapping({"/students", "students/all"})
     public List <Student> getStudents() {
 
-
-
-
-        return  null;
+        return  studentService.getStudents();
     }
 
 
@@ -57,9 +55,7 @@ public class StudentController {
     // http://localhost:8090/api/v1/student/:id
     @GetMapping("/student/{id}")
     public Student getStudent(@PathVariable (name = "id") Long id) {
-
-
-        return null;
+        return studentService.getStudent(id);
     }
 
 
@@ -69,9 +65,7 @@ public class StudentController {
     // http://localhost:8090/api/v1/student
     @PostMapping("/student")
     public Student addStudent(@RequestBody Student student) {
-
-
-        return null;
+        return studentService.addStudent(student);
     }
 
 
@@ -80,10 +74,20 @@ public class StudentController {
     // PUT -- UPDATE
     // http://localhost:8090/api/v1/student/:id
     @PutMapping("/student/{id}")
-    public Student putStudent(@PathVariable Long id) {
+    //public Student updsateStudent(@PathVariable Long id, @RequestBody Student student) {
+    public Optional <Student> updateStudent(@PathVariable Long id, @RequestBody Student student) {
 
+        // Id değeri db de var mı yok mu?
+        Student studentInfo = studentService.getStudent(id);
 
-        return null;
+        if (studentInfo == null) {
+            // return new Student();
+            //return null;
+            return Optional.empty();
+        }
+
+        student.setId(id);
+        return studentService.updateStudent(student);
     }
 
 
@@ -93,10 +97,12 @@ public class StudentController {
     // DELETE - DELETE
     // http://localhost:8090/api/v1/student/:id
     @DeleteMapping("/student/{id}")
-    public Student deleteStudent(@PathVariable Long id) {
+    public String deleteStudent(@PathVariable Long id) {
 
+        // Id değeri db de var mı yok mu?
 
-        return null;
+        // FIXME try catch içine alınacak
+        return studentService.deleteStudent(id);
     }
 
 
