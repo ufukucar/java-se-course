@@ -1,8 +1,10 @@
 package com.ufukucar.service;
 
 
+import com.ufukucar.exception.ResourceNotFoundException;
 import com.ufukucar.model.Student;
 import com.ufukucar.repository.StudentRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -42,21 +44,44 @@ public class StudentService {
     }
 
 
-    public Optional<Student> getOneStudent (Long id) {
+    public Student getOneStudentv1 (Long id) {
+        return studentRepository.findById(id).get();
+    }
 
-        return Optional.of(studentRepository.findById(id).get());
-        //return studentRepository.getReferenceById(id);
+
+    public ResponseEntity  <Student> getOneStudent (Long id) throws ResourceNotFoundException {
+
+        // Kontrol id
+        Student student = studentRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Hata aldık ID: " + id));
+
+        return ResponseEntity.ok().body(student);
+
+
     }
 
 
     public Student createStudent (Student student) {
+
+        // FIX ME; null dönülmeden ne yapabiliriz ?
+        // istekte veri tabanında var mı yok mu onun kontorlü
+        if (studentRepository.findById(student.getId()).isPresent()) {
+
+            return null;
+        }
 
         return studentRepository.save(student);
     }
 
 
 
-    public Map<String, Boolean> deleteStudent (Long id) {
+    public Map<String, Boolean> deleteStudent (Long id) throws ResourceNotFoundException {
+
+
+        // Kontrol id
+        Student student = studentRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("DELETE => Student Not Found ID: " + id));
+
 
         studentRepository.deleteById(id);
 
@@ -68,8 +93,11 @@ public class StudentService {
     }
 
 
-    public Student updateStudent (Long id, Student student) {
+    public Student updateStudentv1 (Long id, Student student) throws ResourceNotFoundException {
 
+        // Kontrol id
+        Student studentInfo = studentRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(" Student Not Found ID: " + id));
 
         student.setId(id);
 
@@ -80,6 +108,18 @@ public class StudentService {
 
 
 
+    public ResponseEntity <Student> updateStudent (Long id, Student student) throws ResourceNotFoundException {
+
+        // Kontrol id
+        Student studentInfo = studentRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(" Student Not Found ID: " + id));
+
+        student.setId(id);
+
+        return ResponseEntity.ok().body(studentRepository.save(student));
+
+
+    }
 
 
 
